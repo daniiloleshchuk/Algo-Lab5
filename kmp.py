@@ -22,13 +22,14 @@ def get_prefix_func(pattern: str):
 
 
 def kmp(text: str, pattern: str):
+
+    if (type(text) is not str) or (type(pattern) is not str) or \
+            (len(text) <= 0) or (len(pattern) <= 0) or (len(pattern) > len(text)):
+        raise ValueError("Wrong input")
+
     pattern_len = len(pattern)
     text_len = len(text)
     matches = []
-
-    if (text_len <= 0) or (pattern_len > text_len):
-        return matches
-
     text_iterator = 0
     pattern_iterator = 0
     prefix_func = get_prefix_func(pattern)
